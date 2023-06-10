@@ -1,3 +1,47 @@
-* {
-    margin: 10px;
+*{
+    font-size: 1.5rem;
+}
+
+.title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2vh;
+}
+
+.form-input{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2vh;
+    border: 1px solid black;
+}
+
+.task{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2vh;
+    border: 1px solid black;
+}
+
+.task a{
+    text-decoration: none;
+}
+
+.task .a_update{
+    color: greenyellow
+}
+.task .a_delete{
+    color: red
+}
+.task-buttons {
+    margin-bottom: 5px; /* Dodaje margines na dole dla odstępu między przyciskami */
+}
+.task-content {
+    display: inline-block; /* Ustawia treść zadania jako blok inline */
+    margin-right: 4vw;
 }
