@@ -9,11 +9,32 @@
         <link rel="stylesheet" href="{% static 'style.css' %}">
     </head>
     <body>
-        <h1>Update Task</h1>
-        <form method="POST" action="">
-            {% csrf_token %}
-            {{form}}
-            <input type="submit" name="Update Task">
-        </form>
+        <!-- <div class="title">
+            <h1>Update Task</h1>
+        </div>
+        <div class="form-input">
+            <form method="POST" action="">
+                {% csrf_token %}
+                {{form}}
+                <input type="submit" name="Update Task" value="Submit">
+            </form>
+        </div> -->
+        <div class="title">
+            <h1>Update Task</h1>
+        </div>
+        <div class="form-input">
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="form-field">
+                    <label for="id_title">Title:</label>
+                    {{ form.title }}
+                </div>
+                <div class="form-field">
+                    <label for="id_complete" class="checkbox-label">Complete: {{ form.complete }}</label>
+                </div>
+                <input type="submit" name="Update Task" value="Submit">
+            </form>
+        </div>
+
     </body>
 </html>

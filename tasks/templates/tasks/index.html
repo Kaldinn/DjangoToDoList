@@ -16,24 +16,24 @@
             <form method="POST" action="/">
                 {% csrf_token %}
                 {{form.title}}
-                <input type="submit" name="Create Task">
+                <input type="submit" name="Create Task" value="Submit">
             </form>
         </div>
-
-        {% for task in tasks%}
-        <div class="task">
-            <div class="task-content">
-                {% if task.complete == True %}
-                <strike>{{task}}</strike>
-                {% else %}
-                <span>{{task}}</span>
-                {% endif %}
+            {% for task in tasks%}
+            <div class="task">
+                <div class="task-content">
+                    {% if task.complete == True %}
+                    <strike>{{task}}</strike>
+                    {% else %}
+                    <span>{{task}}</span>
+                    {% endif %}
+                </div>
+                <div class="task-buttons">
+                    <a href="{% url 'update_task' task.id %}" class="a_update">Update</a>
+                    <a href="{% url 'delete' task.id %}" class="a_delete">Delete</a>
+                </div>
             </div>
-            <div class="task-buttons">
-                <a href="{% url 'update_task' task.id %}" class="a_update">Update</a>
-                <a href="{% url 'delete' task.id %}" class="a_delete">Delete</a>
-            </div>
-        </div>
-        {% endfor %}
+            {% endfor %}
+       
     </body>
 </html>
