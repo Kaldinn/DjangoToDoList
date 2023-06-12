@@ -20,7 +20,7 @@ def login_page(request):
 
         if user is not None:
             login(request, user)
-            return redirect('task_page')
+            return redirect('/tasks')
         else:
             messages.info(request, "Username or password are inncorect")
 
@@ -41,16 +41,17 @@ def register_page(request):
     context = {'form': form}
     return render(request, 'tasks/register.html', context)
 
+@login_required
 def task_page(request):
     tasks = Task.objects.all()          #Pobiera wszystkie obiekty Task z bazy danych
     
-    form = TaskForm()          
+    form = TaskForm()
 
     if request.method == 'POST':        #Sprawdzanie czy jest żadanie typu POST
         form = TaskForm(request.POST)   #Przypisanie do zmiennej dane z żadania POST jako argument
         if form.is_valid():             #Sprawdzainie czy przeszło walidacje
             form.save()                 #Zapisuje dane w bazie danych
-        return redirect('/')         
+        return redirect('/tasks')         
 
     context = {
         'tasks': tasks,
@@ -58,7 +59,7 @@ def task_page(request):
     }
     return render(request, 'tasks/index.html', context)
 
-
+@login_required
 def update_task(request, pk):
 
     task = Task.objects.get(id=pk)
@@ -68,7 +69,7 @@ def update_task(request, pk):
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
             form.save()
-        return redirect('/')
+        return redirect('/tasks')
 
     context = {
         'form' : form
@@ -76,13 +77,13 @@ def update_task(request, pk):
 
     return render(request, 'tasks/update_task.html', context)
 
-
+@login_required
 def delete_task(request, pk):
     item = Task.objects.get(id=pk)
 
     if request.method == 'POST':
         item.delete()
-        return redirect("/")
+        return redirect("/tasks")
 
     context = {
         "item": item

@@ -11,6 +11,9 @@
 <body>
     <div class="title">
         <h1>Confirm Delete</h1>
+        {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="logout-btn">Wyloguj się</a>
+        {% endif %}
     </div>
     <div class="form-input">
         <p>Are You Sure you want to delete?</p>

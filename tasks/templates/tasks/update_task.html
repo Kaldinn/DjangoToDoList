@@ -9,18 +9,11 @@
         <link rel="stylesheet" href="{% static 'style.css' %}">
     </head>
     <body>
-        <!-- <div class="title">
-            <h1>Update Task</h1>
-        </div>
-        <div class="form-input">
-            <form method="POST" action="">
-                {% csrf_token %}
-                {{form}}
-                <input type="submit" name="Update Task" value="Submit">
-            </form>
-        </div> -->
         <div class="title">
             <h1>Update Task</h1>
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="logout-btn">Wyloguj się</a>
+            {% endif %}
         </div>
         <div class="form-input">
             <form method="POST" action="">
